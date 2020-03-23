@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>New Document</TITLE>
+<script language="Javascript">
+function f() {
+	var chaine = document.form1.input.value;
+	x = chaine.split(" ");
+	y = x.join();
+	document.write(y.sub() + ' ');
+	document.write(y.sup() + ' ');
+	document.write(y.big() + ' ');
+	document.write(y.small() + ' ');
+	}
+</script>
+</HEAD>
+<BODY>
+<form name="form1">
+<center>
+<textarea name="input" cols=40 rows=4></textarea><br/>
+<input type="button" name="click" value="afficher" onClick="f();"><br/>
+</center>
+</form>
+</BODY>
+</HTML>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>New Document</TITLE>
+<script language="Javascript">
+function f1() {
+	document.bgColor = document.form1.fond.value;
+	}
+function f2() {
+	document.fgColor = document.form1.texte.value;	
+	}
+</script>
+</HEAD>
+<BODY>
+<form name="form1">
+Voila un texte, histoire d'illustrer l'exemple. Ne vous inquiétez pas il n'a pas d'intérêt.<br/>
+<center>
+<input type="text" value="couleur" name="fond">&nbsp;
+<input type="button" value="changer couleur fond" name="fon" onClick="f1();"><br/>
+<input type="text" value="couleur" name="texte">&nbsp;
+<input type="button" value="changer couleur texte" name="text" onClick="f2();">
+</center>
+</form>
+</BODY>
+</HTML>

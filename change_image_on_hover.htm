@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>New Document</TITLE>
+<script language="Javascript">
+var tab_images = new Array(4); //création d'un tableau de 4 éléments
+
+for (i = 0; i < tab_images.length; i++)  { // pour chaque élément
+	tab_images[i] = new Image(); //on crée un objet Image
+	tab_images[i].src = i + ".gif"; //et on lui donne un fichier à charger
+	}
+
+var nb = 1; //on initialise un compteur
+
+function changer()  {
+	if (nb == tab_images.length)  { //si le numéro d'image est trop grand, on le remet à 1
+		nb = 1;
+		}
+	window.document.image.src = tab_images[nb].src; //affichage
+	nb++; //incrémentation
+	}
+
+function Revenir()  { 
+	window.document.image.src = tab_images[0].src; //remise de l'image initiale
+	}
+</script>
+</HEAD>
+<BODY>
+<img src="0.gif" name="image" onMouseOver="changer();" onMouseOut="Revenir();"><!-- la balise <img> -->
+</BODY>
+</HTML>
