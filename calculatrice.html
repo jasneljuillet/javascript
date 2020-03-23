@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>iPhone Calculator</title>
+        <style>
+        /* Created by Mike Perkowski */
+
+html{
+min-height: 100%;
+}
+body{
+  text-shadow: 2px 3px 5px rgba(0,0,0,0.35);
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  background: linear-gradient(to bottom right, purple, orange);
+  background: -webkit-linear-gradient(to bottom right, purple, orange);
+  background-repeat: no-repeat;
+  min-height:100%;
+  text-align: center;
+  color: white;
+  padding-bottom: 20px;
+}
+
+#bezel{
+display: block;
+position: relative;
+margin: auto;
+padding-top:3px;
+left:0;
+right:0;
+background: rgba(10,10,10,1);
+height: 403px;
+width: 212px;
+border-radius: 30px;
+box-shadow: inset 1px 1px 10px 0 rgba(255,255,255,0.75), 5px 5px 3px rgba(0,0,0,0.25), inset -2px -2px 10px rgba(0,0,0,1);
+animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+    0%{transform: translateY(1000px); opacity:0;}
+    50%{transform: translateY(-10px); opacity:1;}
+    100%{transform: translateY(15px) scale(1.08); opacity:1;}
+}
+
+#frontfacemain{
+overflow: hidden;
+display:block;
+position: relative;
+margin: auto;
+left:0;
+right:0;
+background: black;
+height: 400px;
+width: 205px;
+border-radius: 25px;
+box-shadow: inset 1px 2px 5px rgba(200,200,200,0.75), inset -2px -2px 5px rgba(50,50,50,0.75);
+}
+
+#homebutton{
+display:block;
+position: absolute;
+margin: auto;
+left:0;
+right:0;
+top:auto;
+bottom: 10px;
+background: rgba(10,10,10,1);
+height: 35px;
+width: 35px;
+border-radius: 50%;
+box-shadow: inset 1px 1px 2px rgba(80,80,80,0.75), inset -1px -1px 2px rgba(150,150,150,0.75);
+}
+
+#topspeaker{
+display:block;
+position: absolute;
+margin: auto;
+left:0;
+right:0;
+top:20px;
+bottom: auto;
+background: rgba(25,25,25,1);
+height: 3px;
+width: 35px;
+border-radius: 5px;
+box-shadow: inset 1px 1px 2px rgba(80,80,80,0.75), inset -1px -1px 2px 0 rgba(150,150,150,0.75);
+}
+
+#camera{
+display:block;
+position: absolute;
+margin: auto;
+left:68px;
+right:auto;
+top:18px;
+bottom: auto;
+background: rgba(25,25,25,1);
+height: 7px;
+width: 7px;
+border-radius: 5px;
+box-shadow: inset 1px 1px 2px rgba(80,30,30,0.75), inset -1px -1px 2px 0 rgba(50,50,100,0.75);
+}
+
+#screen{
+opacity: 0;
+transition: opacity 0.75s ease;
+display: block;
+position: absolute;
+margin: auto;
+left:0;
+right:0;
+top:45px;
+bottom: auto;
+background: rgba(255,255,255,0.07);
+height: 300px;
+width: 90%;
+justify-content: center;
+align-items: center;
+}
+
+#sidebutton{
+display:block;
+position: absolute;
+margin: auto;
+left:auto;
+right:-2px;
+top:80px;
+bottom: auto;
+border-radius: 2px;
+box-shadow: inset 0px 1px 2px rgba(150,150,150,0.75), inset -1px -1px 2px 0 rgba(20,20,20,0.75);
+background: rgba(25,25,25,1);
+height: 30px;
+width: 3px;
+}
+
+#hitBox{
+display:block;
+position: absolute;
+margin: auto;
+left:auto;
+right:-20px;
+top:80px;
+bottom: auto;
+
+height: 40px;
+width: 40px;
+}
+
+#volumeup{
+display:block;
+position: absolute;
+margin: auto;
+left:-2px;
+right:auto;
+top:80px;
+bottom: auto;
+border-radius: 2px;
+box-shadow: inset 1px 1px 2px rgba(150,150,150,0.75), inset 1px 1px 2px 0 rgba(20,20,20,0.75);
+background: rgba(25,25,25,1);
+height: 30px;
+width: 3px;
+}
+
+#volumedown{
+display:block;
+position: absolute;
+margin: auto;
+left:-2px;
+right:auto;
+top:115px;
+bottom: auto;
+border-radius: 2px;
+box-shadow: inset 1px 1px 2px rgba(150,150,150,0.75), inset 1px 1px 2px 0 rgba(20,20,20,0.75);
+background: rgba(25,25,25,1);
+height: 30px;
+width: 3px;
+}
+
+#silent{
+display:block;
+position: absolute;
+margin: auto;
+left:-2px;
+right:auto;
+top:50px;
+bottom: auto;
+border-radius: 2px;
+box-shadow: inset 1px 1px 2px rgba(150,150,150,0.75), inset 1px 1px 2px 0 rgba(20,20,20,0.75);
+background: rgba(25,25,25,1);
+height: 15px;
+width: 2px;
+}
+
+#glare{
+position: absolute;
+margin: auto;
+left:0;
+right:0;
+top:auto;
+bottom: -200px;
+background: rgba(155,155,155,0.1);
+height: 500px;
+width: 300px;
+transform: rotate(45deg);
+}
+
+#buttonContainer{
+    position: absolute;
+    bottom: 5px;
+    top:auto;
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-shadow: none;
+}
+
+.button1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: darkgray;
+    border-radius: 50%;
+    color: white;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 3px;
+}
+.button2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: orange;
+    border-radius: 50%;
+    color: white;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 3px;
+}
+
+.button3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(100,100,100,1);
+    border-radius: 50%;
+    color: white;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 3px;
+}
+
+.button4{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background: rgba(100,100,100,1);
+    border-radius: 20px;
+    color: white;
+    width: 69px;
+    height: 40px;
+    padding-left: 15px;
+    margin-bottom: 3px;
+}
+
+#output{
+    text-shadow: none;
+    font-size: 35px;
+    text-align: right;
+    width:100%;
+    margin: auto;
+    position: absolute;
+    top:20px;
+    bottom:auto;
+    overflow: hidden;
+}
+
+.btn:hover{
+    box-shadow: inset 0 0 100px 100px rgba(255,255,255,0.5);
+}
+
+.btn:focus{
+    box-shadow: inset 0 0 100px 100px rgba(255,255,255,0.5);
+}
+        
+        </style>
+    </head>
+    <body>
+        <h2>iPhone Calculatrice</h2>
+          <div id = "bezel">
+                  <div id = "hitBox"></div>
+              <div id = "sidebutton"></div>
+              <div id = "volumeup"></div>
+              <div id = "volumedown"></div>
+              <div id = "silent"></div>
+              <div id = "frontfacemain">
+               <div id = "screen">
+               <div id = "output">0</div>
+               <div id = "buttonContainer">
+                   <div class = "btn button1">C</div>
+                    <div class = "btn button1">±</div>
+                  <div class = "btn button1">%</div>
+                <div class = "btn button2">÷</div>
+                  <div class = "btn button3">7</div>
+                    <div class = "btn button3">8</div>
+                   <div class = "btn button3">9</div>
+                    <div class = "btn button2">x</div>
+                   <div class = "btn button3">4</div>
+                    <div class = "btn button3">5</div>
+                   <div class = "btn button3">6</div>
+                    <div class = "btn button2">-</div>
+                   <div class = "btn button3">1</div>
+                    <div class = "btn button3">2</div>
+                   <div class = "btn button3">3</div>
+                    <div class = "btn button2">+</div>
+                   <div class = "btn button4">0</div>
+                   <div class = "btn button3">.</div>
+                    <div class = "btn button2">=</div>
+                    </div>
+               </div>
+               <div id = "camera"></div>
+               <div id = "topspeaker"></div>
+               <div id = "homebutton"></div>
+              </div>
+          </div>
+          
+          <script>
+          // Created by Mike Perkowski
+
+var to = setTimeout(()=>{
+    alert("Peze bouton Home Lan pou ouve TLF lan");
+},5000);
+
+window.onload = ()=>{
+    var btns = document.getElementsByClassName("btn");
+    var op = document.getElementById("output");
+    var fn = false;
+    var sn = false;
+    var oper = false;
+    var hn = false;
+    
+    var hb = document.getElementById("homebutton");
+
+var sb = document.getElementById("hitBox");
+
+
+hb.addEventListener("touchstart",()=>{
+clearInterval(to);
+document.getElementById("screen").style.opacity = 1;
+});
+
+sb.addEventListener("touchstart",()=>{
+    document.getElementById("screen").style.opacity = 0;
+});
+
+    for(var i = 0; i<btns.length; i++){
+        btns[i].addEventListener("touchstart", processTouch);
+    }
+    
+    function processTouch(e){
+    if((!isNaN(e.target.innerHTML)|| e.target.innerHTML == ".")&&!fn&&!oper&&e.target.innerHTML !== "0"){
+      if(e.target.innerHTML == "."){
+          op.innerHTML = "0"+e.target.innerHTML;
+        fn = op.innerHTML;
+      }else{
+        op.innerHTML = e.target.innerHTML;
+        fn = op.innerHTML;
+        }
+    }else if((!isNaN(e.target.innerHTML)|| e.target.innerHTML == ".")&&fn&&!oper){
+      if(e.target.innerHTML == "."){
+      if(op.innerHTML.indexOf(".")==-1){
+        op.innerHTML += e.target.innerHTML;
+        fn = op.innerHTML;
+        }
+}else{
+        op.innerHTML += e.target.innerHTML;
+        fn = op.innerHTML;
+        }
+    }else if((!isNaN(e.target.innerHTML)|| e.target.innerHTML == ".")&&fn&&oper){
+    
+    if(sn !== false){
+    if(sn.indexOf(".") == -1 &&             e.target.innerHTML == "."){
+    (sn.length == 0)?sn += "0.":sn += ".";
+    hn = sn;
+     op.innerHTML = sn;
+}else{
+    if(e.target.innerHTML !== "."){
+       sn+= e.target.innerHTML;
+       hn = sn;
+       op.innerHTML = sn;
+       }
+    }
+    }
+    }else if(isNaN(e.target.innerHTML)){
+        if((hn == "0" && oper == "/") || op.innerHTML == "Error"){
+    (e.target.innerHTML == "C")?op.innerHTML = 0:op.innerHTML = "Error";
+    fn = false;
+    sn = false;
+    oper = false;
+    hn = false;
+}else{
+        switch(e.target.innerHTML){
+            case "C": 
+            op.innerHTML = 0;
+            fn = false;
+            sn = false;
+            oper = false;
+            hn = false;
+            break;
+            case "±": 
+            op.innerHTML = -1*op.innerHTML;
+            ((fn && !sn) || !fn)?fn = op.innerHTML:hn = sn = op.innerHTML;
+            
+            break;
+            case "%": 
+            op.innerHTML = op.innerHTML/100;
+            ((fn && !sn)|| !fn)?fn = op.innerHTML:hn = sn = op.innerHTML;
+            break;
+            case "+": 
+            if(fn && !sn){
+                sn="";
+                oper = "+";
+            }else {
+                op.innerHTML = Math.round(10000000*eval(fn+oper+sn))/10000000;
+                fn = op.innerHTML;
+                sn = "";
+                oper = "+";
+            }
+            break;
+            case "-": 
+            if(fn && !sn){
+                sn="";
+                oper = "-";
+            }else{
+                op.innerHTML = Math.round(10000000*eval(fn+oper+sn))/10000000;
+                fn = op.innerHTML;
+                sn = "";
+                oper = "-";
+            }
+            break;
+            case "÷": 
+            if(fn && !sn){
+                sn="";
+                oper = "/";
+            }else{
+                op.innerHTML = Math.round(10000000*eval(fn+oper+sn))/10000000;
+                fn = op.innerHTML;
+                sn = "";
+                oper = "/";
+            }
+            break;
+            case "x": 
+            if(fn && !sn){
+                sn="";
+                oper = "*";
+            }else{
+                op.innerHTML = Math.round(10000000*eval(fn+oper+sn))/10000000;
+                fn = op.innerHTML;
+                sn = "";
+                oper = "*";
+            }
+            break;
+            case "=":
+            if(fn && hn && oper){
+            
+            op.innerHTML = Math.round(10000000*eval(fn+oper+hn))/10000000;
+            fn = op.innerHTML;
+            sn = false;
+            }
+           break;
+            default:
+            
+            break;
+            }
+        }
+        
+    }
+    }
+}
+          </script>
+    </body>
+</html>
