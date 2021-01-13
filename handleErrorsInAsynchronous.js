@@ -8,14 +8,19 @@ function calculSquare(number, callback) {
 function calculSquare2(number, callback) {
   setTimeout(() => {
     if (typeof number !== "number") {
-      throw new Error("Invalide parametere type, number must be number type");
-      const result = number * number;
-      callback(result);
+      callback(new Error("Argument of type number is expected."));
+      return;
     }
+    const result = number * number;
+    callback(null, result);
   }, 1000);
 }
-const callback = (result) => {
-  console.log(`Result : ${result}`);
+let callback = (error, result) => {
+  if (error !== null) {
+    console.log("Caught error: " + String(error));
+    return;
+  }
+  console.log(result);
 };
 calculSquare(5, callback); //25, if number is not number type we will get NaN
-calculSquare2(5, callback); //25, if number is not number type Error will shows
+calculSquare2("Jasnel", callback); //25, if number is not number type Error will shows
